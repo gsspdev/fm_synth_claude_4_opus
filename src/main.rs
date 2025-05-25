@@ -209,13 +209,7 @@ fn main() -> anyhow::Result<()> {
     let sample_rate = config.sample_rate().0 as f32;
     
     // Create synth with default parameters
-    let params = FMParams {
-        carrier_freq: 440.0,      // A4
-        modulator_freq: 880.0,    // A5
-        modulation_index: 5.0,    // High modulation for bell-like sound
-        amplitude: 0.3,
-    };
-    
+    let params = FMParams::default();
     let synth = Arc::new(Mutex::new(FMSynth::new(sample_rate, params)));
     
     // Clone for audio callback
@@ -241,43 +235,88 @@ fn main() -> anyhow::Result<()> {
     
     println!("FM Synthesizer Demo");
     println!("==================");
-    println!("Playing a sequence of FM tones...\n");
     
-    // Play a simple melody
-    let notes = vec![
-        (440.0, 880.0, 2.0),   // A4 with 2:1 ratio
-        (523.25, 1046.5, 3.0), // C5 with 2:1 ratio
-        (659.25, 659.25, 5.0), // E5 with 1:1 ratio (bell-like)
-        (440.0, 220.0, 8.0),   // A4 with 1:2 ratio (sub-harmonic)
-    ];
+    // Choose demo mode: 1 for presets, 2 for melody
+    let demo_mode = 1; // Change this to switch between demos
     
-    for (carrier, modulator, mod_index) in notes {
-        println!("Playing: Carrier={:.1}Hz, Modulator={:.1}Hz, Index={:.1}", 
-                 carrier, modulator, mod_index);
-        
-        // Update synth parameters
-        {
-            let mut synth = synth.lock().unwrap();
-            synth.set_params(FMParams {
-                carrier_freq: carrier,
-                modulator_freq: modulator,
-                modulation_index: mod_index,
-                amplitude: 0.3,
-            });
-            synth.note_on();
+    match demo_mode {
+        1 => {
+            // Demo 1: Play through all presets
+            println!("Playing preset sounds...\n");
+            
+            let presets = example_presets();
+            let note_freqs = vec![220.0, 440.0, 330.0, 440.0]; // A3, A4, E4, A4
+            
+            for (name, mut preset_params) in presets {
+                println!("Preset: {}", name);
+                
+                for &freq in &note_freqs {
+                    // Scale frequencies proportionally
+                    let freq_ratio = freq / 440.0;
+                    preset_params.carrier_freq *= freq_ratio;
+                    preset_params.modulator_freq *= freq_ratio;
+                    
+                    println!("  Note at {:.1}Hz", preset_params.carrier_freq);
+                    
+                    {
+                        let mut synth = synth.lock().unwrap();
+                        synth.set_params(preset_params.clone());
+                        synth.note_on();
+                    }
+                    
+                    std::thread::sleep(Duration::from_millis(600));
+                    
+                    {
+                        let mut synth = synth.lock().unwrap();
+                        synth.note_off();
+                    }
+                    
+                    std::thread::sleep(Duration::from_millis(200));
+                }
+                
+                println!();
+                std::thread::sleep(Duration::from_millis(500));
+            }
         }
-        
-        // Play for 1 second
-        std::thread::sleep(Duration::from_millis(800));
-        
-        // Note off
-        {
-            let mut synth = synth.lock().unwrap();
-            synth.note_off();
+        2 => {
+            // Demo 2: Play a melody with custom parameters
+            println!("Playing a sequence of FM tones...\n");
+            
+            let notes = vec![
+                (440.0, 880.0, 2.0),   // A4 with 2:1 ratio
+                (523.25, 1046.5, 3.0), // C5 with 2:1 ratio
+                (659.25, 659.25, 5.0), // E5 with 1:1 ratio (bell-like)
+                (440.0, 220.0, 8.0),   // A4 with 1:2 ratio (sub-harmonic)
+            ];
+            
+            for (carrier, modulator, mod_index) in notes {
+                println!("Playing: Carrier={:.1}Hz, Modulator={:.1}Hz, Index={:.1}", 
+                         carrier, modulator, mod_index);
+                
+                {
+                    let mut synth = synth.lock().unwrap();
+                    synth.set_params(FMParams {
+                        carrier_freq: carrier,
+                        modulator_freq: modulator,
+                        modulation_index: mod_index,
+                        amplitude: 0.3,
+                    });
+                    synth.note_on();
+                }
+                
+                std::thread::sleep(Duration::from_millis(800));
+                
+                {
+                    let mut synth = synth.lock().unwrap();
+                    synth.note_off();
+                }
+                
+                std::thread::sleep(Duration::from_millis(700));
+            }
         }
-        
-        // Wait for release
-        std::thread::sleep(Duration::from_millis(700));
+        _ => {
+            println!("Invalid demo mode");
+        }
     }
     
     println!("\nDone!");
@@ -285,7 +324,6 @@ fn main() -> anyhow::Result<()> {
 }
 
 // Example usage for creating different timbres:
-#[allow(dead_code)]
 fn example_presets() -> Vec<(&'static str, FMParams)> {
     vec![
         ("Bell", FMParams {
