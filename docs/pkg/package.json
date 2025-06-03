@@ -1,0 +1,15 @@
+{
+  "name": "fm_synth",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "fm_synth_bg.wasm",
+    "fm_synth.js",
+    "fm_synth.d.ts"
+  ],
+  "main": "fm_synth.js",
+  "types": "fm_synth.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

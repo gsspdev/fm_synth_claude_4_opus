@@ -1,0 +1,14 @@
+/Users/music/Developer/fm_synth_claude_4_opus/target/debug/deps/libclang_sys-9c31c2a035f0e846.rmeta: /Users/music/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/lib.rs /Users/music/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/support.rs /Users/music/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/link.rs /Users/music/Developer/fm_synth_claude_4_opus/target/debug/build/clang-sys-852e8dee3eb1e843/out/macros.rs /Users/music/Developer/fm_synth_claude_4_opus/target/debug/build/clang-sys-852e8dee3eb1e843/out/common.rs /Users/music/Developer/fm_synth_claude_4_opus/target/debug/build/clang-sys-852e8dee3eb1e843/out/dynamic.rs
+
+/Users/music/Developer/fm_synth_claude_4_opus/target/debug/deps/libclang_sys-9c31c2a035f0e846.rlib: /Users/music/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/lib.rs /Users/music/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/support.rs /Users/music/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/link.rs /Users/music/Developer/fm_synth_claude_4_opus/target/debug/build/clang-sys-852e8dee3eb1e843/out/macros.rs /Users/music/Developer/fm_synth_claude_4_opus/target/debug/build/clang-sys-852e8dee3eb1e843/out/common.rs /Users/music/Developer/fm_synth_claude_4_opus/target/debug/build/clang-sys-852e8dee3eb1e843/out/dynamic.rs
+
+/Users/music/Developer/fm_synth_claude_4_opus/target/debug/deps/clang_sys-9c31c2a035f0e846.d: /Users/music/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/lib.rs /Users/music/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/support.rs /Users/music/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/link.rs /Users/music/Developer/fm_synth_claude_4_opus/target/debug/build/clang-sys-852e8dee3eb1e843/out/macros.rs /Users/music/Developer/fm_synth_claude_4_opus/target/debug/build/clang-sys-852e8dee3eb1e843/out/common.rs /Users/music/Developer/fm_synth_claude_4_opus/target/debug/build/clang-sys-852e8dee3eb1e843/out/dynamic.rs
+
+/Users/music/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/lib.rs:
+/Users/music/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/support.rs:
+/Users/music/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/link.rs:
+/Users/music/Developer/fm_synth_claude_4_opus/target/debug/build/clang-sys-852e8dee3eb1e843/out/macros.rs:
+/Users/music/Developer/fm_synth_claude_4_opus/target/debug/build/clang-sys-852e8dee3eb1e843/out/common.rs:
+/Users/music/Developer/fm_synth_claude_4_opus/target/debug/build/clang-sys-852e8dee3eb1e843/out/dynamic.rs:
+
+# env-dep:OUT_DIR=/Users/music/Developer/fm_synth_claude_4_opus/target/debug/build/clang-sys-852e8dee3eb1e843/out
